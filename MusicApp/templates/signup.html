@@ -7,14 +7,27 @@
 </head>
 <body>
     <h1>Welcome!!!</h1>
-    <form action="{{url_for('signup') }}", method="POST">
+    <form id="signup-form" action="{{url_for('signup') }}", method="POST">
         <input type="text", name="fname", required="required", placeholder="First Name (eg. David)">
         <input type="text", name="lname", required="required", placeholder="Last Name (eg. Doe)">
         <input type="email", name="email", required="required", placeholder="email@gmail.com">
         <input type="text", name="username", required="required", placeholder="Username (eg. Mr_D)">
         <input type="password", name="password", required="required", placeholder="Password">
-        <input type="submit", value="Sign Up">
+        <input type="submit", value="Signup", onclick="setActionForm('signup')">
     </form>
-    
+    <script>
+        function setActionForm(action){
+            let form = document.getElementById("signup-form");
+            if (action === 'signup'){
+                form.action = "{{url_for('signup')}}";
+                form.method = "post";
+                form.submit();
+            }else if (action === 'login'){
+                form.action = "{{url_for('login')}}";
+                form.method = "post";
+                form.submit();
+            }
+        }
+    </script>
 </body>
 </html>
